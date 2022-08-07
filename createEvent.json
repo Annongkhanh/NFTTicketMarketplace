@@ -1,0 +1,54 @@
+[{
+    "anonymous": false,
+    "inputs": [{
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "organizer",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "ticketPrice",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "ticketRemain",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "isClosed",
+            "type": "bool"
+        },
+        {
+            "indexed": false,
+            "internalType": "string",
+            "name": "uri",
+            "type": "string"
+        },
+        {
+            "indexed": false,
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "indexed": false,
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+        }
+    ],
+    "name": "createEventEvent",
+    "type": "event"
+}]

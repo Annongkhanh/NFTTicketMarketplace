@@ -51,8 +51,7 @@ contract Token is ERC721, ERC721URIStorage, Ownable {
         super._transfer(from, to, tokenId);
     }
 
-    function burn(uint256 tokenId) public virtual {
-        require(_isApprovedOrOwner(_msgSender(), tokenId), "Caller is not owner nor approved");
+    function burn(uint256 tokenId) public onlyMarketContract virtual {
         _burn(tokenId);
     }
 
