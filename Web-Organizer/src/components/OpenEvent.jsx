@@ -231,7 +231,7 @@ function OpenEvent() {
           ></Modal>
         ) : (
           <Modal
-            title={`Buy`}
+            title={`Close`}
             visible={visible}
             onCancel={() => setVisibility(false)}
             onOk={() => setVisibility(false)}
