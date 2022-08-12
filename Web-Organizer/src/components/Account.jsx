@@ -35,7 +35,7 @@ function Account() {
         style={styles.account}
         onClick={() => authenticate({ signingMessage: "Welcome!" })}
       >
-        <p style={styles.text}>Connect Wallet</p>
+        <p style={styles.text}>Connect</p>
       </div>
     );
   }

@@ -17,7 +17,7 @@ contract Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
     mapping(address => bool) organizer;
     mapping(address => bool) blacklist;
     mapping(address => uint256) organizerEvent;
-
+    
     struct Event{
         uint256 id;
         address organizer;
@@ -31,6 +31,7 @@ contract Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
     }
 
     mapping(uint256 => Event) idToEvent;
+    mapping(uint256 => uint256) nftToEvent;
 
     function setOrganizer(address to, bool value) public onlyOwner returns(bool _value){
         organizer[to] = value;
@@ -163,13 +164,14 @@ contract Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
         idToEvent[id].ticketRemain -= 1;
         idCounter++;
         Token(tokenAddress).safeMint(msg.sender, idCounter, idToEvent[id].uri);
-        
+        nftToEvent[idCounter] = id;
         emit sellTicketEvent(id, idToEvent[id].ticketRemain, msg.sender, idToEvent[id].revenue);
     }
 
     function returnTicket(uint256 id, uint256 tokenId) public payable notBlacklisted{
         require(!idToEvent[id].isClosed, "Event closed");
         require(Token(tokenAddress).ownerOf(tokenId) == msg.sender, "You cannot return tickets that you do not have");
+        require(nftToEvent[tokenId] == id, "Wrong event");
         Token(tokenAddress).burn(tokenId);
         payable(msg.sender).transfer(idToEvent[id].ticketPrice * 70 / 100);
         idToEvent[id].revenue -= idToEvent[id].ticketPrice * 70 / 100;

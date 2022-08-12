@@ -1,33 +1,29 @@
-import { Select } from "antd";
-import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
-import { getCollectionsByChain } from "helpers/collections";
+import { Input } from 'antd';
 
-function SearchEvent({ setInputValue }) {
-  const { Option } = Select;
-  const { chainId } = useMoralisDapp();
-  const NFTCollections = getCollectionsByChain(chainId);
 
-  function onChange(value) {
-    setInputValue(value);
-  }
 
-  return (
-    <>
-      <Select
-        showSearch
-        style={{ width: "50%", marginLeft: "1%" }}
-        placeholder="Find Event"
-        optionFilterProp="children"
-        onChange={onChange}
-      >
-        {NFTCollections &&
-          NFTCollections.map((collection, i) => (
-            <Option value={collection.addrs} key={i}>
-              {collection.name}
-            </Option>
-          ))}
-      </Select>
-    </>
-  );
+function SearchEvent({setInputValue}){
+
+
+    const { Search } = Input;
+    function onChange(e) {
+        setInputValue(e);
+    }
+
+    return (
+        <>
+        <Search
+            
+            style={{width: "50%",
+                    marginLeft: "1%" }}
+            placeholder="Find Event"
+            
+            onSearch={onChange}
+        >   
+    
+        </Search>
+            
+        </>
+    )
 }
 export default SearchEvent;

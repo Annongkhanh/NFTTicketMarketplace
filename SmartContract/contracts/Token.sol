@@ -51,7 +51,8 @@ contract Token is ERC721, ERC721URIStorage, Ownable {
         super._transfer(from, to, tokenId);
     }
 
-    function burn(uint256 tokenId) public onlyMarketContract virtual {
+    function burn(uint256 tokenId) public virtual {
+        
         _burn(tokenId);
     }
 

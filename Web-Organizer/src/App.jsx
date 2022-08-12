@@ -50,11 +50,11 @@ const styles = {
     width : "20%"
   },
 };
-const App = ({ isServerInfo }) => {
+const App = () => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
 
-  const [inputValue, setInputValue] = useState("explore");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -86,7 +86,7 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/closedEvent">Closed Event</NavLink>
             </Menu.Item>
             <Menu.Item key="createEvent">
-              <NavLink to="/createEvent">Create New Event</NavLink>
+              <NavLink to="/createEvent">Create Event</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
@@ -97,10 +97,10 @@ const App = ({ isServerInfo }) => {
         <div style={styles.content}>
           <Switch>
             <Route path="/openEvent">
-              <OpenEvent />
+              <OpenEvent inputValue={inputValue} setInputValue={setInputValue}/>
             </Route>
             <Route path="/closedEvent">
-              <ClosedEvent/>
+              <ClosedEvent inputValue={inputValue} setInputValue={setInputValue}/>
             </Route>
             <Route path="/createEvent">
               <CreateEvent />
